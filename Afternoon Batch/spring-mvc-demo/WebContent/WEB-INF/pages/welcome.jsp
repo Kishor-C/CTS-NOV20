@@ -7,11 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${msg} 
+	<h2>This is welcome page</h2>
 	<hr />
-	
-	<a href = "multipleKeys">Multiple Keys</a>
-</body>
+	<h3>Title: ${model.title}</h3>
+	<hr />
+	<h3>Employee Information</h3>
+	${model.employeeObject}
+	<hr />
 	
 </body>
 </html>
