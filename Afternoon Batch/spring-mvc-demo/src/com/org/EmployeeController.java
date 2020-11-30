@@ -39,7 +39,7 @@ public class EmployeeController {
 		ModelMap modelMap = new ModelMap();
 		modelMap.put("title", "Simple Title");
 		modelMap.put("employeeObject", new Employee(100, "Raj", 35000));
-		//modelMap.put("employeeList", service.getAllEmployeesNamesInReverseOrder());
+		modelMap.put("employeeList", service.getAllEmployeesNamesInReverseOrder());
 		mav = new ModelAndView("welcome", "model", modelMap);
 		return mav;
 	}
