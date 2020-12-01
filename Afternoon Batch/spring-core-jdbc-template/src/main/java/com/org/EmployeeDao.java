@@ -15,6 +15,8 @@ public class EmployeeDao {
 	@Autowired
 	private JdbcTemplate jdbc;
 	
+	
+	
 	public void store(Employee emp) {
 		String query = "insert into employee values(?, ?, ?)";
 		jdbc.update(query, emp.getId(), emp.getName(), emp.getSalary());

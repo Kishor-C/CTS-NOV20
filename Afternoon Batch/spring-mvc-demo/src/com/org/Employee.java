@@ -1,9 +1,23 @@
 package com.org;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employee")
 public class Employee {
-	private int id;
-	private String name;
-	private double salary;
+	
+	@Column(name = "id")
+	@Id
+	private int id; // is mapped to id column
+	
+	@Column(name = "name")
+	private String name; // is mapped to name column
+	
+	@Column(name = "salary")
+	private double salary; // is mapped to salary column
 	
 	public Employee() {
 		super();
