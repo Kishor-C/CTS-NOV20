@@ -1,5 +1,8 @@
 package com.example.restbasedspringbootapp;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Account { 
 	private long accountNo;
 	private double amount;
