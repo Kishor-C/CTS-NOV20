@@ -1,0 +1,8 @@
+server:
+  port: 8761
+  
+# disable the eureka server to register itself as a microservice
+
+eureka:  client:    register-with-eureka: false
+    fetch-registry: false
+    
