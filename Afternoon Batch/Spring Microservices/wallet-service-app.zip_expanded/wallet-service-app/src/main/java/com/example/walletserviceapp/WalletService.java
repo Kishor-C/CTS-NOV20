@@ -12,6 +12,7 @@ public class WalletService {
 	
 	public Wallet addAmountToWallet(long accountNumber) {
 		Wallet wallet = new Wallet();
+		wallet.setName("Bruce");
 		// let us try to add 50% of the amount from the account
 		AccountStructure account = rest.getForObject("http://ACCOUNT-SERVICE/account/"+accountNumber, AccountStructure.class);
 		wallet.setBalance(wallet.getBalance() + (account.getAmount() * 0.5));
