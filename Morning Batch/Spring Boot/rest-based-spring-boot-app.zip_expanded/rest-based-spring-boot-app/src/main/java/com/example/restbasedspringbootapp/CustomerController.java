@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,14 +34,34 @@ public class CustomerController {
 	}
 	
 	@GetMapping("{customerId}")
-	public Customer getCustomerAPI(@PathVariable("customerId") int id) {
-		Customer customer = customerService.fetchCustomer(id);
-		return customer;
+	public ResponseEntity<Object> getCustomerAPI(@PathVariable("customerId") int id) {
+		ResponseEntity<Object> response = null;
+		try {
+			Customer customer = customerService.fetchCustomer(id);
+			response = ResponseEntity.status(200).body(customer); // it has id, name, dob
+		} catch (CustomerNotFoundException e) {
+			ResponseMessage error = new ResponseMessage();
+			error.setStatusCode(404);
+			error.setDescription(e.getMessage());
+			response = ResponseEntity.status(404).body(error); 
+		}
+		return response;
 	}
 	
 	@PutMapping("{customerId}/{dob}")
-	public Customer updateCustomerDobAPI(@PathVariable("customerId") int id, @PathVariable("dob") String stringDob) {
-		return customerService.updateCustomer(id, LocalDate.parse(stringDob));
+	public ResponseEntity<Object> updateCustomerDobAPI(@PathVariable("customerId") int id, @PathVariable("dob") String stringDob) {
+		ResponseEntity<Object> response = null;
+		try {
+			Customer customer = customerService.updateCustomer(id, LocalDate.parse(stringDob));
+			response = ResponseEntity.status(200).body(customer);
+		} catch(CustomerNotFoundException e) {
+			ResponseMessage error = new ResponseMessage();
+			error.setStatusCode(404);
+			error.setDescription(e.getMessage());
+			response = ResponseEntity.status(404).body(error); 
+		}
+		return response;
+		
 	}
 	
 }
