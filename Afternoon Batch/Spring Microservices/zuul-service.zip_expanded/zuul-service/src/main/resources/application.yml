@@ -1,0 +1,13 @@
+server:
+  port: 5555
+
+#below configuration gives the information about actuators
+management:  endpoints:    web:      exposure:        include: "*"
+
+eureka:  client:    register-with-eureka: true    fetch-registry: true
+
+zuul:  ignored-services: "*"
+  routes:
+    microservice1: /ms1/**
+    microservice2: /ms2/**
+
