@@ -16,6 +16,10 @@ public class EmployeeService {
 		return dao.fetchDateTime();
 	}
 	
+	public Employee save(Employee employee) {
+		return dao.store(employee);
+	}
+	
 	public List<Employee> getAllEmployeesNamesInReverseOrder() {
 		List<Employee> list = dao.fetchAllEmployees().stream()
 		.sorted((e1, e2) -> e2.getName().compareTo(e1.getName()))
@@ -25,5 +29,14 @@ public class EmployeeService {
 	
 	public Employee fetchEmployee(int id) {
 		return dao.fetchEmployee(id);
+	}
+	
+	public Employee login(int id, String name) {
+		Employee e = dao.fetchEmployee(id);
+		if(e.getName().equals(name)) {
+			return e;
+		} else {
+			return null;
+		}
 	}
 }

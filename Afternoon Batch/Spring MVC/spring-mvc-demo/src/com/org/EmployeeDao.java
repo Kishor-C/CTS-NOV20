@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class EmployeeDao {
@@ -21,6 +22,12 @@ public class EmployeeDao {
 	
 	public String fetchDateTime() {
 		return LocalDateTime.now().toString();
+	}
+	
+	@Transactional
+	public Employee store(Employee employee) {
+		Integer id = (Integer)hibernateTemplate.save(employee);
+		return fetchEmployee(id);
 	}
 	
 	@SuppressWarnings("unchecked")
